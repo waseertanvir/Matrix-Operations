@@ -17,7 +17,17 @@ This is a java class providing fast, flexible, and expressive data structures de
 <h3 id="installation">
 Installation
 </h3>
-For installation, the JAR file is provided in the /target directory, user has to add the file to the classpath.
+Before installation, I would like to point out one thing that you should have Maven installed.
+
+Now we are all done with the prerequisites let's jump to the installation part
+
+In order to create a JAR for this project, the process is pretty straightforward navigate to the project directory and run the following:
+
+```bash
+mvn package
+```
+This will automatically create a JAR file in the directory /target
+
 <h3 id="usage">
 Usage
 </h3>
