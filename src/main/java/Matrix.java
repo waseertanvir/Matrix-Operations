@@ -1,5 +1,5 @@
 /*
-    @author: Tanvir Singh <singhtanvir525@gmail.com>
+    @author: Tanvir Waseer <twaseer@protonmail.com>
     @version: May 13, 2020
     @description: This is a java class providing fast, flexible, and expressive data structures designed to make
      working with matrices.
@@ -34,22 +34,24 @@ public class Matrix {
 
     public void setMatrix(double[][] matrix) {
         this.matrix = matrix;
+        this.rows = getRowCount(matrix);
+        this.column = getColCount(matrix);
     }
     /*
-    Simple scanner object to take user inputs just in case if the user is not providing a constructor with values.
+    Scanner object to take user inputs just in case if the user is not providing a constructor with values.
      */
     Scanner keyboardInput = new Scanner(System.in);
 
     /*
     Constructor accepting two parameters first one number of rows and second, number of columns so that its easy
-    to initialize the object with predefined values, and the matrix will not prompt the user, again and again,
+    to initialize the object with predefined values, and the matrix will prompt the user, again and again,
     to fill in the values again.
      */
     public Matrix(int rows, int column) {
         this.rows = rows;
         this.column = column;
         /*
-        The object which was initialized above we are simply allotting it some memory with a particular length
+        The object which was initialized above we are allotting it some memory with a particular length
         of matrices so that they don't cause any further exception based on mathematical and logical rules.
          */
         matrix = new double[rows][column];
@@ -65,13 +67,14 @@ public class Matrix {
         }
     }
     /*
-    Constructor which simply accepts one parameter that is the hard coded value of matrix which is a 2d array in
-    this case, which makes it easy to simply put data straight in rather than having to type every value for
+    Constructor which accepts one parameter that is the hard coded value of matrix which is a 2d array in
+    this case, which makes it easy to input data rather than having to type every value for
     index separately.
-    This method can be simply executed by creating an object and calling it as shown below
+
+    This method can be executed by creating an object and calling it as shown below
 
     i.e.
-    Matrix a = new Matrix((new double[][] {
+    Matrix a = new Matrix((new int[][] {
             {1,2},
             {3,4}
     }));
@@ -83,7 +86,7 @@ public class Matrix {
             {3.0,4.0}
     }));
 
-    as shown in the above example it will create a 2 x 2 matrix and we can simply hard code the value straight
+    as shown in the above example it will create a 2 x 2 matrix and we can hard code the value
     into the object so that we can perform the operations directly.
      */
 
@@ -95,7 +98,7 @@ public class Matrix {
             setMatrix(inputMatrix);
         }
         /*
-        If there is not anything inside the matrix then it will simply print the message written below.
+        If there is not anything inside the matrix then it will print the message written below.
          */
         else{
             displayError();
@@ -103,7 +106,7 @@ public class Matrix {
         }
     }
     /*
-    Constructor with no arguments which makes it easy to initialize objects and it will simply prompt the user
+    Constructor with no arguments which makes it easy to initialize objects and it will prompt the user
     to enter the number of rows and columns and then based on that ask for the values.
      */
     public Matrix() {
@@ -123,11 +126,8 @@ public class Matrix {
         }
     }
     /*
-    This matrix operation simply adds two matrices, it accepts one parameter the matrix class object on which this
-     function is going to perform the operation.
-    This method can be simply executed by creating an object and calling it as shown below
+    Let's consider two matrix objects on which we are going to perform the add operation
 
-    i.e.
     Matrix a = new Matrix((new double[][] {
             {1,2},
             {3,4}
@@ -137,15 +137,20 @@ public class Matrix {
             {3,4}
     }));
 
-    The line below is simply going to execute the add method and store the resultant matrix in the object c
+    This matrix operation adds two matrices, it accepts one parameter the matrix class object on which this
+    function is going to perform the operation.
+
+    The line below is going to execute the add method and store the resultant matrix in the object c
     Matrix c = a.add(b);
-    Now to simply display the matrix we have to call the toString method which in this case will be
+    Now to display the matrix we have to call the toString method which in this case will be
+
     System.out.println(c.toString());
+
     and the resultant is:
-    2 4
-    6 8
-    as shown in the above example it will create a 2 x 2 matrix and we can simply hard code the value straight
-    into the object so that we can perform the operations directly.
+
+    2.0 4.0
+    6.0 8.0
+
      */
     public Matrix add(Matrix inputMatrix){
         /*
@@ -192,9 +197,7 @@ public class Matrix {
     This function below performs the same operation with a slight difference having a static keyword assigned
     to it, makes it accessible from anywhere without having to call it from its object moreover it accepts two
     parameters, both of type matrices upon which the addition will be performed.
-    This method can be simply executed without creating an object and calling it as shown below
 
-    i.e.
     Matrix a = new Matrix((new double[][] {
             {1,2},
             {3,4}
@@ -204,13 +207,15 @@ public class Matrix {
             {3,4}
     }));
 
-    The line below is simply going to execute the add method and display the resultant matrix.
-    System.out.println(a.add(b).toString());
+    This method can be executed without creating an object and calling it as shown below
+
+    System.out.println(Matrix.add(a, b));
+
     and the resultant is:
-    2 4
-    6 8
-    as shown in the above example it will create a 2 x 2 matrix and we can simply hard code the value straight
-    into the object so that we can perform the operations directly.
+
+    2.0 4.0
+    6.0 8.0
+
      */
     public static Matrix add(Matrix firstMatrix, Matrix secondMatrix){
         double[][] finalMatrix = null;
@@ -241,11 +246,8 @@ public class Matrix {
     }
 
     /*
-    This matrix operation simply subtracts two matrices, it accepts one parameter the matrix class object on which this
-     function is going to perform the operation.
-    This method can be simply executed by creating an object and calling it as shown below
+    Let's consider two matrix objects on which we are going to perform the subtract operation
 
-    i.e.
     Matrix a = new Matrix((new double[][] {
             {1,2},
             {3,4}
@@ -255,15 +257,22 @@ public class Matrix {
             {3,4}
     }));
 
-    The line below is simply going to execute the add method and store the resultant matrix in the object c
+    This matrix operation subtracts two matrices, it accepts one parameter the matrix class object on which this
+     function is going to perform the operation.
+
+    This method can be executed by creating an object and calling it as shown below
+
     Matrix c = a.subtract(b);
-    Now to simply display the matrix we have to call the toString method which in this case will be
+
+    Now to display the matrix we have to call the toString method which in this case will be
+
     System.out.println(c.toString());
+
     and the resultant is:
-    0 0
-    0 0
-    as shown in the above example it will create a 2 x 2 matrix and we can simply hard code the value straight
-    into the object so that we can perform the subtraction directly.
+
+    0.0 0.0
+    0.0 0.0
+
      */
     public Matrix subtract(Matrix inputMatrix){
         /*
@@ -299,28 +308,31 @@ public class Matrix {
     }
 
     /*
+    Let's consider two matrix objects on which we are going to perform the subtract operation
+
+    Matrix a = new Matrix((new double[][] {
+            {1.0,2.0},
+            {3.0,4.0}
+    }));
+    Matrix b = new Matrix((new double[][] {
+            {1.0,2.0},
+            {3.0,4.0}
+    }));
+
     This function below performs the same subtract operation with a slight difference having a static keyword assigned
     to it, makes it accessible from anywhere without having to call it from its object moreover it accepts two
     parameters, both of type matrices upon which the subtraction will be performed.
-    This method can be simply executed without creating an object and calling it as shown below
+    This method can be executed without creating an object and calling it as shown below
 
-    i.e.
-    Matrix a = new Matrix((new double[][] {
-            {1,2},
-            {3,4}
-    }));
-    Matrix b = new Matrix((new double[][] {
-            {1,2},
-            {3,4}
-    }));
+    The line below is going to execute the add method and store the resultant matrix
 
-    The line below is simply going to execute the add method and store the resultant matrix in the object c
     System.out.println(Matrix.subtract(a,b).toString());
+
     and the resultant is:
-    0 0
-    0 0
-    as shown in the above example it will create a 2 x 2 matrix and we can simply hard code the value straight
-    into the object so that we can perform the subtraction directly.
+
+    0.0 0.0
+    0.0 0.0
+
      */
     public static Matrix subtract(Matrix firstMatrix, Matrix secondMatrix){
         double[][] finalMatrix = null;
@@ -356,11 +368,8 @@ public class Matrix {
     }
 
     /*
-    This matrix operation simply multiplies two matrices, it accepts one parameter the matrix class object on which this
-    function is going to perform the operation.
-    This method can be simply executed by creating an object and calling it as shown below
+    Let's consider two matrix objects on which we are going to perform multiplication
 
-    i.e.
     Matrix a = new Matrix((new double[][] {
             {1,2},
             {3,4}
@@ -370,18 +379,23 @@ public class Matrix {
             {3,4}
     }));
 
-    The line below is simply going to execute the multiply method and store the resultant matrix in the object c
+    This matrix operation multiplies two matrices, it accepts one parameter the matrix class object on which this
+    function is going to perform the operation.
+    This method can be executed by creating an object and calling it as shown below
+
+    The line below is going to execute the multiply method and store the resultant matrix in the object c
 
     Matrix c = a.multiply(b);
 
-    Now to simply display the matrix we have to call the toString method which in this case will be
+    Now to display the matrix we have to call the toString method which in this case will be
 
     System.out.println(c.toString());
+
     and the resultant is:
+
     7 10
     15 22
-    as shown in the above example it will create a 2 x 2 matrix and we can simply hard code the value straight
-    into the object so that we can perform the subtraction directly.
+
      */
     public Matrix multiply(Matrix inputMatrix){
         /*
@@ -416,12 +430,8 @@ public class Matrix {
     }
 
     /*
-    This function below performs the same multiplication operation with a slight difference having a static keyword assigned
-    to it, makes it accessible from anywhere without having to call it from its object moreover it accepts two
-    parameters, both of type matrices upon which the subtraction will be performed.
-    This method can be simply executed without creating an object and calling it as shown below
+    Let's consider two matrix objects on which we are going to perform multiplication
 
-    i.e.
     Matrix a = new Matrix((new double[][] {
             {1,2},
             {3,4}
@@ -431,15 +441,20 @@ public class Matrix {
             {3,4}
     }));
 
-    The line below is simply going to execute the add method and store the resultant matrix in the object c
+    This function below performs the same multiplication operation with a slight difference having a static keyword assigned
+    to it, makes it accessible from anywhere without having to call it from its object moreover it accepts two
+    parameters, both of type matrices upon which the subtraction will be performed.
+    This method can be executed without creating an object and calling it as shown below
+
+    The line below is going to execute the add method and store the resultant matrix in the object c
+
     System.out.println(Matrix.multiply(a,b).toString());
+
     and the resultant is:
 
     7 10
     15 22
 
-    as shown in the above example it will create a 2 x 2 matrix and we can simply hard code the value straight
-    into the object so that we can perform the subtraction directly.
      */
     public static Matrix multiply(Matrix firstMatrix, Matrix secondMatrix){
         int[] firstMatrixRowCount = getInputRowsCols(firstMatrix.getMatrix());
@@ -462,7 +477,7 @@ public class Matrix {
         return null;
     }
     /*
-    This matrix operation below simply returns the transpose of the matrix it's a non-static method
+    This matrix operation returns the transpose of the matrix it's a non-static method
     i.e. we can directly call it and straight print it from its object.
 
     e.g.
@@ -526,7 +541,7 @@ public class Matrix {
          */
         if((inputMatrix.getMatrix() != null) && checkIfUnbalanced(inputMatrix.getMatrix())){
             /*
-            Simply creating a new matrix where the transpose of matrix is going to be saved as we can see
+            Creating a new matrix where the transpose of matrix is going to be saved as we can see
             both rows and columns are switching since here the first parameter is the column and second is row.
              */
             double[][] finalMatrix = new double[getColCount(inputMatrix.getMatrix())][getRowCount(inputMatrix.getMatrix())];
@@ -551,7 +566,7 @@ public class Matrix {
     so far in this program, the only use is implemented in addition and subtraction function but it can also
     be used in many other cases.
     This takes two arguments both of the matrix and checks whether they have the same number of rows and columns.
-    It's a general  method which means it can also be used just to verify the attributes of two matrices
+    It's a general method which means it can also be used just to verify the attributes of two matrices
 
     e.g.
     double[][] test1 = {
@@ -567,8 +582,10 @@ public class Matrix {
     Matrix b = new Matrix(test2);
 
     Although it's a boolean statement we can also create an object of the class and work accordingly.
-    And below simply printing the boolean resultant expression
+    And below printing the boolean resultant expression
+
     System.out.println(check.checkMatrix(a.getMatrix(), b.getMatrix()));
+
     It will print true because both of the matrices having the same count for row and column.
 
     e.g.
@@ -584,13 +601,13 @@ public class Matrix {
     Matrix b = new Matrix(test2);
 
     Although it's a boolean statement we can also create an object of the class and work accordingly.
-    And below simply printing the boolean resultant expression
+
     System.out.println(Matrix.checkMatrix(a.getMatrix(), b.getMatrix()));
     It will print false because both of the matrices do not have the same count for row and column.
      */
-    public static boolean checkMatrix(double[][] first_matrix, double[][] second_matrix){
+    private static boolean checkMatrix(double[][] first_matrix, double[][] second_matrix){
         /*
-        A simple conditional statement checks that the matrices are not empty if they are it simply displays
+        A conditional statement checks that the matrices are not empty if they are it displays
         the message in the else block.
          */
         if((first_matrix != null) && (second_matrix != null)){
@@ -607,8 +624,29 @@ public class Matrix {
         return false;
     }
 
+    private static int getRowCount(Matrix inputMatrix){
+        if(inputMatrix != null){
+            return inputMatrix.matrix.length;
+        }
+        return 0;
+    }
+
+    private static int getColCount(Matrix inputMatrix){
+        int colCount = 0;
+
+        if(inputMatrix != null){
+            for(int i=0; i<inputMatrix.matrix.length; i++){
+                for(int j=0; j<inputMatrix.matrix[i].length; j++){
+                    colCount++;
+                }
+                return colCount;
+            }
+        }
+        return 0;
+    }
+
     /*
-    This method simply returns the row count of a particular matrix.
+    This method returns the row count of a particular matrix.
      */
     public static int getRowCount(double[][] inputMatrix){
         if(inputMatrix != null){
@@ -617,7 +655,7 @@ public class Matrix {
         return 0;
     }
     /*
-    This method simply returns the column count of a particular matrix.
+    This method returns the column count of a particular matrix.
      */
     public static int getColCount(double[][] inputMatrix){
         int colCount = 0;
@@ -634,24 +672,29 @@ public class Matrix {
     }
 
     /*
-    This function below plays an important role in various parts of the program when it comes to verifying column and row count of a particular matrix because it checks if there all the rows are having the same number of columns
+    This function plays an important role in various parts of the program when it comes to verifying column and row count
+    of a particular matrix because it checks if there all the rows are having the same number of columns
+
     i.e.
     Matrix a = new Matrix(new int[][]{
             {1,2},
             {3,4},
             {5,6}
     });
+
     let's take this object above for example if we run this function on an object "a" it will return true
     System.out.println(Matrix.chackIfUnbalanced(a.getMatrix()));
     because all the columns are the same in this matrix.
     now let's try something different
+
     Matrix b = new Matrix(new int[][]{
             {1,2},
             {3,4},
             {5,6,9}
     });
-    clearly there is some inconsistency noticable in object b above since there aer 3 columns in 3rd row
-    System.out.println(Matrix.chackIfUnbalanced(a.getMatrix()));
+
+    clearly there is some inconsistency noticeable in object b above since there aer 3 columns in 3rd row
+    System.out.println(Matrix.checkIfUnbalanced(a.getMatrix()));
     now in this particular case, this function will return false
      */
     public static boolean checkIfUnbalanced(double[][] inputMatrix){
@@ -664,7 +707,7 @@ public class Matrix {
             storeCount.add(inputMatrix[i].length);
         }
         /*
-        Now since we do have the count we can simply iterate through index values just to verify that all
+        Now since we do have the count we can iterate through index values just to verify that all
         the values are same or not.
          */
         for(int i=0; i<storeCount.size(); i++){
@@ -684,24 +727,27 @@ public class Matrix {
     /*
     The method is shown below return an array containing both row and column the row on the 0th index and
     column on the 1st index. It accepts one argument i.e. of the matrix itself of which we need the attributes
-    we could have also chosen another approach and simply create separate methods, in which each will
+    we could have also chosen another approach and create separate methods, in which each will
     separately return row and column in int format but both of the ways do make sense and most importantly
     it gets work done.
     This can be easily applied to any 2d array to get its row and column count.
     e.g.
+
     int[][] test1 = {
             {1,2,3},
             {4,5,6}
     };
+
     Matrix a = new Matrix(test1);
     int[] count = Matrix.getInputRowsCols(a.getMatrix());
     System.out.println("Rows: "+count[0]);
     System.out.println("Column: "+count[1]);
+
     Terminal:
     Rows: 2
     Column: 3
      */
-    public static int[] getInputRowsCols(double[][] inputMatrix){
+    private static int[] getInputRowsCols(double[][] inputMatrix){
         if(inputMatrix != null){
             int rowCount = 0;
             int colCount = 0;
@@ -723,9 +769,7 @@ public class Matrix {
         return null;
     }
 
-    /*
-    This function simply displays the error.
-     */
+
     private static void displayError(){
         System.out.println("Please make sure if matrices have the same dimension; that is, they must have the " +
                 "same number of rows and columns.");
