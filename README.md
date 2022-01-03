@@ -2,7 +2,7 @@
 
 This is a java class providing fast, flexible, and expressive data structures designed to make working with matrices.
 
-Also going to upload a new version of matrix-operations which makes the use of Generics hopefully in the near future.
+Soon going to upload a new version of matrix-operations which makes the use of Generics.
 
 ### Table of Contents:
 
